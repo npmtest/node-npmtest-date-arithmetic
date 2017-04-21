@@ -1,0 +1,889 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-date-arithmetic/node_modules/date-arithmetic/index.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-date-arithmetic">npmtest-date-arithmetic (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-date-arithmetic/node_modules/date-arithmetic/index.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">8.25% <small>(8 / 97)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 69)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">8.7% <small>(2 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">9.52% <small>(8 / 84)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> » <a href="index.html">node-npmtest-date-arithmetic/node_modules/date-arithmetic/</a> » index.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var MILI    = 'milliseconds'
+  , SECONDS = 'seconds'
+  , MINUTES = 'minutes'
+  , HOURS   = 'hours'
+  , DAY     = 'day'
+  , WEEK    = 'week'
+  , MONTH   = 'month'
+  , YEAR    = 'year'
+  , DECADE  = 'decade'
+  , CENTURY = 'century';
+&nbsp;
+var dates = module.exports = {
+&nbsp;
+  add: <span class="fstat-no" title="function not covered">function(date, num, unit) {</span>
+<span class="cstat-no" title="statement not covered">    date = new Date(date)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    switch (unit){</span>
+      case MILI:
+      case SECONDS:
+      case MINUTES:
+      case HOURS:
+      case YEAR:
+<span class="cstat-no" title="statement not covered">        return dates[unit](date, dates[unit](date) + num)</span>
+      case DAY:
+<span class="cstat-no" title="statement not covered">        return dates.date(date, dates.date(date) + num)</span>
+      case WEEK:
+<span class="cstat-no" title="statement not covered">        return dates.date(date, dates.date(date) + (7 * num)) </span>
+      case MONTH:
+<span class="cstat-no" title="statement not covered">        return monthMath(date, num)</span>
+      case DECADE:
+<span class="cstat-no" title="statement not covered">        return dates.year(date, dates.year(date) + (num * 10))</span>
+      case CENTURY:
+<span class="cstat-no" title="statement not covered">        return dates.year(date, dates.year(date) + (num * 100))</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    throw new TypeError('Invalid units: "' + unit + '"')</span>
+  },
+&nbsp;
+  subtract: <span class="fstat-no" title="function not covered">function(date, num, unit) {</span>
+<span class="cstat-no" title="statement not covered">    return dates.add(date, -num, unit)</span>
+  },
+&nbsp;
+  startOf: <span class="fstat-no" title="function not covered">function(date, unit, firstOfWeek) {</span>
+<span class="cstat-no" title="statement not covered">    date = new Date(date)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    switch (unit) {</span>
+      case 'century':
+      case 'decade':
+      case 'year':
+<span class="cstat-no" title="statement not covered">          date = dates.month(date, 0);</span>
+      case 'month':
+<span class="cstat-no" title="statement not covered">          date = dates.date(date, 1);</span>
+      case 'week':
+      case 'day':
+<span class="cstat-no" title="statement not covered">          date = dates.hours(date, 0);</span>
+      case 'hours':
+<span class="cstat-no" title="statement not covered">          date = dates.minutes(date, 0);</span>
+      case 'minutes':
+<span class="cstat-no" title="statement not covered">          date = dates.seconds(date, 0);</span>
+      case 'seconds':
+<span class="cstat-no" title="statement not covered">          date = dates.milliseconds(date, 0);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    if (unit === DECADE) </span>
+<span class="cstat-no" title="statement not covered">      date = dates.subtract(date, dates.year(date) % 10, 'year')</span>
+    
+<span class="cstat-no" title="statement not covered">    if (unit === CENTURY) </span>
+<span class="cstat-no" title="statement not covered">      date = dates.subtract(date, dates.year(date) % 100, 'year')</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    if (unit === WEEK) </span>
+<span class="cstat-no" title="statement not covered">      date = dates.weekday(date, 0, firstOfWeek);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    return date</span>
+  },
+&nbsp;
+&nbsp;
+  endOf: <span class="fstat-no" title="function not covered">function(date, unit, firstOfWeek){</span>
+<span class="cstat-no" title="statement not covered">    date = new Date(date)</span>
+<span class="cstat-no" title="statement not covered">    date = dates.startOf(date, unit, firstOfWeek)</span>
+<span class="cstat-no" title="statement not covered">    date = dates.add(date, 1, unit)</span>
+<span class="cstat-no" title="statement not covered">    date = dates.subtract(date, 1, MILI)</span>
+<span class="cstat-no" title="statement not covered">    return date</span>
+  },
+&nbsp;
+  eq:  createComparer(<span class="fstat-no" title="function not covered">function(a, b){</span> <span class="cstat-no" title="statement not covered">return a === b }</span>),
+  neq: createComparer(<span class="fstat-no" title="function not covered">function(a, b){</span> <span class="cstat-no" title="statement not covered">return a !== b }</span>),
+  gt:  createComparer(<span class="fstat-no" title="function not covered">function(a, b){</span> <span class="cstat-no" title="statement not covered">return a &gt; b }</span>),
+  gte: createComparer(<span class="fstat-no" title="function not covered">function(a, b){</span> <span class="cstat-no" title="statement not covered">return a &gt;= b }</span>),
+  lt:  createComparer(<span class="fstat-no" title="function not covered">function(a, b){</span> <span class="cstat-no" title="statement not covered">return a &lt; b }</span>),
+  lte: createComparer(<span class="fstat-no" title="function not covered">function(a, b){</span> <span class="cstat-no" title="statement not covered">return a &lt;= b }</span>),
+&nbsp;
+  min: <span class="fstat-no" title="function not covered">function(){</span>
+<span class="cstat-no" title="statement not covered">    return new Date(Math.min.apply(Math, arguments))</span>
+  },
+&nbsp;
+  max: <span class="fstat-no" title="function not covered">function(){</span>
+<span class="cstat-no" title="statement not covered">    return new Date(Math.max.apply(Math, arguments))</span>
+  },
+  
+  inRange: <span class="fstat-no" title="function not covered">function(day, min, max, unit){</span>
+<span class="cstat-no" title="statement not covered">    unit = unit || 'day'</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    return (!min || dates.gte(day, min, unit))</span>
+        &amp;&amp; (!max || dates.lte(day, max, unit))
+  },
+&nbsp;
+  milliseconds:   createAccessor('Milliseconds'),
+  seconds:        createAccessor('Seconds'),
+  minutes:        createAccessor('Minutes'),
+  hours:          createAccessor('Hours'),
+  day:            createAccessor('Day'),
+  date:           createAccessor('Date'),
+  month:          createAccessor('Month'),
+  year:           createAccessor('FullYear'),
+&nbsp;
+  decade: <span class="fstat-no" title="function not covered">function (date, val) {</span>
+<span class="cstat-no" title="statement not covered">    return val === undefined </span>
+      ? dates.year(dates.startOf(date, DECADE))
+      : dates.add(date, val + 10, YEAR);
+  },
+&nbsp;
+  century: <span class="fstat-no" title="function not covered">function (date, val) {</span>
+<span class="cstat-no" title="statement not covered">    return val === undefined </span>
+      ? dates.year(dates.startOf(date, CENTURY))
+      : dates.add(date, val + 100, YEAR);
+  },
+&nbsp;
+  weekday: <span class="fstat-no" title="function not covered">function (date, val, firstDay) {</span>
+<span class="cstat-no" title="statement not covered">      var weekday = (dates.day(date) + 7 - (firstDay || 0) ) % 7;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">      return val === undefined </span>
+        ? weekday 
+        : dates.add(date, val - weekday, DAY);
+  },
+&nbsp;
+  diff: <span class="fstat-no" title="function not covered">function (date1, date2, unit, asFloat) {</span>
+<span class="cstat-no" title="statement not covered">    var dividend, divisor, result;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    switch (unit) {</span>
+      case MILI:
+      case SECONDS:
+      case MINUTES:
+      case HOURS:
+      case DAY:
+      case WEEK:
+<span class="cstat-no" title="statement not covered">        dividend = date2.getTime() - date1.getTime(); <span class="cstat-no" title="statement not covered"></span>break;</span>
+      case MONTH:
+      case YEAR:
+      case DECADE:
+      case CENTURY:
+<span class="cstat-no" title="statement not covered">        dividend = (dates.year(date2) - dates.year(date1)) * 12 + dates.month(date2) - dates.month(date1); <span class="cstat-no" title="statement not covered"></span>break;</span>
+      default:
+<span class="cstat-no" title="statement not covered">        throw new TypeError('Invalid units: "' + unit + '"');</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    switch (unit) {</span>
+      case MILI:
+<span class="cstat-no" title="statement not covered">          divisor = 1; <span class="cstat-no" title="statement not covered"></span>break;</span>
+      case SECONDS:
+<span class="cstat-no" title="statement not covered">          divisor = 1000; <span class="cstat-no" title="statement not covered"></span>break;</span>
+      case MINUTES:
+<span class="cstat-no" title="statement not covered">          divisor = 1000 * 60; <span class="cstat-no" title="statement not covered"></span>break;</span>
+      case HOURS:
+<span class="cstat-no" title="statement not covered">          divisor = 1000 * 60 * 60; <span class="cstat-no" title="statement not covered"></span>break;</span>
+      case DAY:
+<span class="cstat-no" title="statement not covered">          divisor = 1000 * 60 * 60 * 24; <span class="cstat-no" title="statement not covered"></span>break;</span>
+      case WEEK:
+<span class="cstat-no" title="statement not covered">          divisor = 1000 * 60 * 60 * 24 * 7; <span class="cstat-no" title="statement not covered"></span>break;</span>
+      case MONTH:
+<span class="cstat-no" title="statement not covered">          divisor = 1; <span class="cstat-no" title="statement not covered"></span>break;</span>
+      case YEAR:
+<span class="cstat-no" title="statement not covered">          divisor = 12; <span class="cstat-no" title="statement not covered"></span>break;</span>
+      case DECADE:
+<span class="cstat-no" title="statement not covered">          divisor = 120; <span class="cstat-no" title="statement not covered"></span>break;</span>
+      case CENTURY:
+<span class="cstat-no" title="statement not covered">          divisor = 1200; <span class="cstat-no" title="statement not covered"></span>break;</span>
+      default:
+<span class="cstat-no" title="statement not covered">        throw new TypeError('Invalid units: "' + unit + '"');</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    result = dividend / divisor;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    return asFloat ? result : absoluteFloor(result);</span>
+  }
+};
+&nbsp;
+<span class="fstat-no" title="function not covered">function absoluteFloor(number) {</span>
+<span class="cstat-no" title="statement not covered">  return number &lt; 0 ? Math.ceil(number) : Math.floor(number);</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function monthMath(date, val){</span>
+<span class="cstat-no" title="statement not covered">  var current = dates.month(date)</span>
+    , newMonth  = (current + val);
+&nbsp;
+<span class="cstat-no" title="statement not covered">    date = dates.month(date, newMonth)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    while (newMonth &lt; 0 ) <span class="cstat-no" title="statement not covered">newMonth = 12 + newMonth</span></span>
+      
+    //month rollover
+<span class="cstat-no" title="statement not covered">    if ( dates.month(date) !== ( newMonth % 12))</span>
+<span class="cstat-no" title="statement not covered">      date = dates.date(date, 0) </span>//move to last of month
+&nbsp;
+<span class="cstat-no" title="statement not covered">    return date</span>
+}
+&nbsp;
+function createAccessor(method){
+  return <span class="fstat-no" title="function not covered">function(date, val){</span>
+<span class="cstat-no" title="statement not covered">    if (val === undefined)</span>
+<span class="cstat-no" title="statement not covered">      return date['get' + method]()</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    date = new Date(date)</span>
+<span class="cstat-no" title="statement not covered">    date['set' + method](val)</span>
+<span class="cstat-no" title="statement not covered">    return date</span>
+  }
+}
+&nbsp;
+function createComparer(operator) {
+  return <span class="fstat-no" title="function not covered">function (a, b, unit) {</span>
+<span class="cstat-no" title="statement not covered">    return operator(+dates.startOf(a, unit), +dates.startOf(b, unit))</span>
+  };
+}
+&nbsp;
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Fri Apr 21 2017 13:12:19 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
